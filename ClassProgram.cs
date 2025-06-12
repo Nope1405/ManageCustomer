@@ -67,8 +67,15 @@ public class ClassProgram
             }
 
             string customerName = PromptNonEmpty("Enter customer's name: ");
-            double amount = PromptDouble("Total order amount: ");
-
+            double amount;
+            do
+            {
+                amount = PromptDouble("Total order amount: ");
+                if (amount <= 0)
+                {
+                    Console.WriteLine("Error: Total order amount must be a positive number. Please try again.");
+                }
+            } while (amount <= 0);
             Order newOrder = new(orderId, customerName, amount);
             orderList.Add(newOrder);
             Console.WriteLine("Order added successfully");
